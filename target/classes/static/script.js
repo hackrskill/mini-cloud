@@ -80,15 +80,21 @@ function handleError(e, msg='An error occurred'){
 // ----- THEME (dark mode) -----
 const themeToggle = document.getElementById('themeToggle');
 function applyTheme(theme){
-  if(theme === 'dark') document.body.classList.add('dark'); else document.body.classList.remove('dark');
-  themeToggle.textContent = theme === 'dark' ? '☀' : '🌙';
+  document.body.classList.remove('dark','light');
+  if(theme === 'dark'){
+    document.body.classList.add('dark');
+    themeToggle.textContent = '☀';
+  }else{
+    document.body.classList.add('light');
+    themeToggle.textContent = '🌙';
+  }
   localStorage.setItem('mini_theme', theme);
 }
 themeToggle.onclick = () => {
   const now = document.body.classList.contains('dark') ? 'light' : 'dark';
   applyTheme(now);
 };
-const savedTheme = localStorage.getItem('mini_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+const savedTheme = localStorage.getItem('mini_theme') || 'dark';
 applyTheme(savedTheme);
 
 // ----- PAGE SWITCHING -----
