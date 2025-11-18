@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MiniCloud — Modern Dashboard</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">☁</div>
+      <div>
+        <h1>MiniCloud</h1>
+        <small class="muted">Local demo — buckets & files</small>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+      <div id="userMsg" class="muted">
+        <span id="userEmail"></span>
+        &nbsp;• Backend: <span id="backendStatus">unknown</span>
+      </div>
+      <button id="logoutBtn" class="icon-btn" aria-label="Sign out">↪</button>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <button class="nav-btn active" data-page="buckets">Buckets</button>
+    <button class="nav-btn" data-page="files">Files</button>
+    <button class="nav-btn" data-page="lambda">Lambda</button>
+    <button class="nav-btn" data-page="queue">Queue</button>
+  </nav>
+
+  <!-- Content -->
+  <main class="container">
+
+    <!-- BUCKETS -->
+    <section id="buckets" class="page visible">
+      <div class="card">
+        <div class="card-head">
+          <h2>Manage Buckets</h2>
+          <div class="actions">
+            <input id="bucketName" placeholder="New bucket name" />
+            <button id="createBucket" class="btn">Create</button>
+          </div>
+        </div>
+
+        <div id="bucketsList" class="list-grid"></div>
+      </div>
+    </section>
+
+    <!-- FILES -->
+    <section id="files" class="page hidden">
+      <div class="card">
+        <div class="card-head">
+          <h2>Bucket Files</h2>
+          <div class="actions">
+            <select id="bucketSelect"></select>
+            <button id="refreshFiles" class="btn ghost">Refresh</button>
+          </div>
+        </div>
+
+        <div class="upload-area" id="uploadArea">
+          <div class="upload-left">
+            <div id="dropZone" class="drop-zone">
+              <div class="drop-inner">
+                <div class="drop-icon">📁</div>
+                <div class="drop-text">Drag & drop files here or click to choose</div>
+                <small class="muted">Files will be stored in the selected bucket</small>
+              </div>
+              <input id="fileInput" type="file" multiple class="file-input" />
+            </div>
+            <div class="upload-actions">
+              <button id="uploadBtn" class="btn">Upload Selected</button>
+              <button id="clearSelection" class="btn ghost">Clear</button>
+            </div>
+          </div>
+
+          <div class="upload-right">
+            <h4>Selected files</h4>
+            <div id="selectedFiles" class="list-vertical"></div>
+          </div>
+        </div>
+
+        <hr />
+
+        <h3>Files in bucket</h3>
+        <div id="filesList" class="list-grid"></div>
+      </div>
+    </section>
+
+    <!-- LAMBDA -->
+    <section id="lambda" class="page hidden">
+      <div class="card">
+        <div class="card-head">
+          <h2>Lambda (Serverless)</h2>
+        </div>
+
+        <div class="row">
+          <input id="fnName" placeholder="Function name" />
+          <select id="fnRuntime">
+            <option value="PYTHON3">Python 3</option>
+            <option value="NODEJS">Node.js</option>
+          </select>
+          <button id="createFn" class="btn">Create</button>
+        </div>
+
+        <textarea id="fnCode" placeholder="Write function code (handler should be named `main`)"></textarea>
+
+        <h4>Functions</h4>
+        <div id="fnList" class="list-grid"></div>
+      </div>
+    </section>
+
+    <!-- QUEUE -->
+    <section id="queue" class="page hidden">
+      <div class="card">
+        <div class="card-head">
+          <h2>Message Queue</h2>
+        </div>
+
+        <div class="row">
+          <input id="qName" placeholder="Queue name (default)" value="default" />
+          <button id="sendMsg" class="btn">Send</button>
+        </div>
+
+        <textarea id="qPayload" placeholder="Message payload (plain text)"></textarea>
+
+        <h4>Messages</h4>
+        <div id="msgList" class="list-grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- spinner overlay -->
+  <div id="spinner" class="spinner hidden">
+    <div class="loader"></div>
+  </div>
+
+  <!-- toast notifications -->
+  <div id="toasts" class="toasts"></div>
+
+</body>
+</html>
