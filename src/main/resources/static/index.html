@@ -19,7 +19,7 @@
       <div class="logo">☁</div>
       <div>
         <h1>MiniCloud</h1>
-        <small class="muted">Local demo — buckets & files</small>
+        <small class="muted">Buckets • Uploads • Lambda • Queue</small>
       </div>
     </div>
 
@@ -30,6 +30,26 @@
         &nbsp;• Backend: <span id="backendStatus">unknown</span>
       </div>
       <button id="logoutBtn" class="icon-btn" aria-label="Sign out">↪</button>
+      <style>
+      .icon-btn {
+        color: inherit;
+        opacity: 0.85;
+        transition: opacity 0.2s ease;
+      }
+      .icon-btn:hover {
+        opacity: 1;
+      }
+      
+      /* Ensure visibility in dark mode */
+      body.dark .icon-btn {
+        color: #fff;
+      }
+      
+      /* Ensure visibility in light mode */
+      body.light .icon-btn {
+        color: #111;
+      }
+      </style>
     </div>
   </header>
 
@@ -150,6 +170,44 @@
 
   <!-- toast notifications -->
   <div id="toasts" class="toasts"></div>
+
+  <footer class="footer">
+    <small>
+      © 2025 MiniCloud — Crafted with ☁ by 
+      <a href="https://github.com/hackrskill" target="_blank" class="author">Rohit Sukul</a>
+    </small>
+  </footer>
+  
+  <style>
+    .footer {
+      text-align: center;
+      padding: 12px;
+      font-size: 13px;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
+    }
+    .footer:hover {
+      opacity: 1;
+    }
+    .footer a.author {
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+  
+    /* Auto-adjust text color for Dark/Light mode */
+    body.light .footer {
+      color: #222;
+    }
+    body.dark .footer {
+      color: #ddd;
+    }
+  
+    /* Hover glow effect */
+    .footer a.author:hover {
+      text-shadow: 0 0 6px currentColor;
+    }
+  </style>
 
 </body>
 </html>

@@ -54,6 +54,43 @@
       <div id="authToast" class="toast hidden"></div>
     </section>
   </main>
+  <footer class="footer">
+    <small>
+      © 2025 MiniCloud — Crafted with ☁ by 
+      <a href="https://github.com/hackrskill" target="_blank" class="author">Rohit Sukul</a>
+    </small>
+  </footer>
+  
+  <style>
+    .footer {
+      text-align: center;
+      padding: 12px;
+      font-size: 13px;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
+    }
+    .footer:hover {
+      opacity: 1;
+    }
+    .footer a.author {
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+  
+    /* Auto-adjust text color for Dark/Light mode */
+    body.light .footer {
+      color: #222;
+    }
+    body.dark .footer {
+      color: #ddd;
+    }
+  
+    /* Hover glow effect */
+    .footer a.author:hover {
+      text-shadow: 0 0 6px currentColor;
+    }
+  </style>
 </body>
 </html>
 
